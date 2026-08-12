@@ -7,50 +7,49 @@ import 'package:google_fonts/google_fonts.dart';
 class TextStyles {
   TextStyles._();
 
-  static final TextStyle display = GoogleFonts.anton(
+  static final TextStyle display = GoogleFonts.inter(
     fontSize: 55,
     fontWeight: FontWeight.normal,
     color: AppColor.primary,
   );
 
-  static final TextStyle appBar = GoogleFonts.plusJakartaSans(
+  static final TextStyle appBar = GoogleFonts.inter(
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: AppColor.white,
   );
 
-  static final TextStyle appBarTitle = GoogleFonts.bebasNeue(
-    fontSize: 28,
-    fontWeight: FontWeight.w600,
+  static final TextStyle appBarTitle = GoogleFonts.inter(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
     color: AppColor.white,
-    letterSpacing: 2,
   );
 
-  static final TextStyle headline1 = GoogleFonts.plusJakartaSans(
+  static final TextStyle headline1 = GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColor.white,
   );
 
-  static final TextStyle subtitle = GoogleFonts.plusJakartaSans(
+  static final TextStyle subtitle = GoogleFonts.inter(
     fontSize: 11,
     fontWeight: FontWeight.w500,
     color: AppColor.primary,
   );
 
-  static final TextStyle bodySmall = GoogleFonts.plusJakartaSans(
+  static final TextStyle bodySmall = GoogleFonts.inter(
     fontSize: 11,
     fontWeight: FontWeight.w400,
     color: AppColor.white,
   );
 
-  static final TextStyle headline2 = GoogleFonts.plusJakartaSans(
+  static final TextStyle headline2 = GoogleFonts.inter(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: AppColor.white,
   );
 
-  static final TextStyle numbers = GoogleFonts.plusJakartaSans(
+  static final TextStyle numbers = GoogleFonts.inter(
     fontSize: 23,
     fontWeight: FontWeight.w600,
     color: AppColor.white,
@@ -58,33 +57,32 @@ class TextStyles {
     letterSpacing: -0.5,
   );
 
-  static final TextStyle body = GoogleFonts.plusJakartaSans(
+  static final TextStyle body = GoogleFonts.inter(
     fontSize: 12,
     fontWeight: FontWeight.w500,
     color: AppColor.white,
     height: 1.5,
   );
 
-  static final TextStyle overline = GoogleFonts.plusJakartaSans(
+  static final TextStyle overline = GoogleFonts.inter(
     fontSize: 19,
     fontWeight: FontWeight.w500,
     color: AppColor.white,
-    letterSpacing: 1.2,
   );
 
-  static final TextStyle buttonSmall = GoogleFonts.plusJakartaSans(
+  static final TextStyle buttonSmall = GoogleFonts.inter(
     fontSize: 11,
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
 
-  static final TextStyle success = GoogleFonts.plusJakartaSans(
+  static final TextStyle success = GoogleFonts.inter(
     fontSize: 12,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     color: AppColor.success,
   );
 
-  static final TextStyle badge = GoogleFonts.plusJakartaSans(
+  static final TextStyle badge = GoogleFonts.inter(
     fontSize: 10,
     fontWeight: FontWeight.w600,
     color: GridColor.red50,

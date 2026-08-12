@@ -202,3 +202,20 @@ class GlassColors {
   static const Color red100 = Color(0x99FF5C7A);
   static const Color red50 = Color(0x99FF8AA0);
 }
+
+
+class AppColors {
+  AppColors._();
+
+  static const Color white = Colors.white;
+  static const Color shadow = Color(0xFFE0E0E0);
+  static const Color doctorBackground = Color(0xFFF4F8FF);
+  static const Color black = Colors.black;
+
+
+  static const Color primaryBlue = Color(0xFF2C81FF);
+  static const Color secondaryBlue = Color(0xFF247CFF);
+  static const Color lightBlue = Color(0xFF4896FC);
+  static const Color darkBlue = Color(0xFF0C8CE9);
+
+}
