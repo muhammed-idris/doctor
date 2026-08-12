@@ -1,3 +1,4 @@
+import 'package:doctor/features/notification/screens/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../core/constants/app_theme_extension.dart';
@@ -69,10 +70,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 height: height * 0.05,
                 width: height * 0.05,
                 child: Center(
-                  child: Icon(
-                    Icons.notifications_none_rounded,
-                    color: glass.textPrimary,
-                    size: 24,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(
+                          builder:(context) => NotificationScreen(), ));
+                    },
+                    icon: Icon(
+                      Icons.notifications_none_rounded,
+                      color: glass.textPrimary,
+                      size: 24,
+                    ),
                   ),
                 ),
               ),

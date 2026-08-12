@@ -1,8 +1,7 @@
 import 'package:doctor/features/home/screens/doctor_speciality_screen.dart';
-import 'package:doctor/features/home/screens/dr_recommendation_screen.dart';
+import 'package:doctor/features/doctor/screen/dr_recommendation_screen.dart';
 import 'package:doctor/features/home/widget/doctor_speciality_widget.dart';
 import 'package:doctor/features/home/widget/nearby_widget.dart';
-import 'package:doctor/features/home/widget/recommendation%20doctor/dr_recommendation_widget.dart';
 import 'package:doctor/shared/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -10,7 +9,7 @@ import 'package:gap/gap.dart';
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/color_manger.dart';
 import '../../../core/constants/text_styles.dart';
-import '../widget/recommendation doctor/dr_recommendation_card.dart';
+import '../../doctor/widget/dr_recommendation_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

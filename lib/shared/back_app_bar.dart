@@ -1,3 +1,4 @@
+import 'package:doctor/core/constants/color_manger.dart';
 import 'package:flutter/material.dart';
 import '../core/constants/app_theme_extension.dart';
 import '../core/constants/text_styles.dart';
@@ -8,13 +9,17 @@ class BackAppBar extends StatelessWidget
   const BackAppBar({
     super.key,
     required this.appBarTitle,
-    this.actionIcon,
+    this.button,
     this.onActionPressed,
+    this.buttonColor,
+    this.buttonColorBorder,
   });
 
   final String appBarTitle;
-  final Icon? actionIcon;
+  final Widget? button;
   final VoidCallback? onActionPressed;
+  final Color? buttonColor;
+  final Color? buttonColorBorder;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -48,7 +53,7 @@ class BackAppBar extends StatelessWidget
         appBarTitle,
         style: TextStyles.overline.copyWith(color: glass.textPrimary),
       ),
-      actions: actionIcon != null
+      actions: button != null
           ? [
         Padding(
           padding: const EdgeInsets.only(right: 16),
@@ -56,13 +61,13 @@ class BackAppBar extends StatelessWidget
             onPressed: onActionPressed,
             icon: CustomGlassCard(
               margin: EdgeInsets.zero,
-              padding: EdgeInsets.symmetric(horizontal: width * 0.015),
-              height: height * 0.04,
-              borderRadius: 13,
-              gradient: LinearGradient(colors: glass.surfaceGradient),
+              padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+              height: height * 0.045,
+              borderRadius: 15,
+              backgroundColor: buttonColor ?? GridColor.white850,
               borderColors: glass.borderColors,
               child: Center(
-                child: actionIcon,
+                child: button,
               ),
             ),
           ),

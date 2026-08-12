@@ -1,10 +1,10 @@
-import 'package:doctor/features/home/widget/recommendation%20doctor/dr_recommendation_widget.dart';
 import 'package:doctor/shared/back_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../../../core/constants/app_theme_extension.dart';
+import '../widget/dr_recommendation_widget.dart';
+import '../widget/dr_sheet.dart';
 
 class DrRecommendationScreen extends StatefulWidget {
   const DrRecommendationScreen({super.key});
@@ -25,7 +25,7 @@ class _DrRecommendationScreenState extends State<DrRecommendationScreen> {
       child: Scaffold(
         appBar: BackAppBar(
           appBarTitle: "Recommendation Doctor",
-          actionIcon: Icon(
+          button: Icon(
             Icons.more_horiz_rounded,
             color: glass.textPrimary,
             size: 24,
@@ -74,13 +74,28 @@ class _DrRecommendationScreenState extends State<DrRecommendationScreen> {
                     ),
                     Gap(width * 0.016),
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.filter_list,
-                        size: 25,
-                        color: glass.textPrimary,
-                      ),
-                    ),
+                      onPressed: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) {
+                            return Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.fromLTRB(2, 2, 2, 20),
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(28),
+                                ),
+                              ),
+                              child:  DrSheet(),
+                            );
+                          },
+                        );
+                      },
+                      icon: const Icon(Icons.filter_list),
+                    )
                   ],
                 ),
                 Gap(height * 0.015),

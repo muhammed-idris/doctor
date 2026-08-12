@@ -75,9 +75,9 @@ class _RootState extends State<Root> {
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Image.asset("assets/icons/mail-outline.png", height: 24),
+              icon: Image.asset("assets/icons/chat-line-linear.png", height: 24),
               activeIcon: Image.asset(
-                "assets/icons/mail-rounded.png",
+                "assets/icons/chat-line-bold.png",
                 height: 24,
                 color: AppColors.primaryBlue,
               ),
