@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Gap(height * 0.02),
+              Gap(30),
               NearbyWidget(),
               Gap(height * 0.01),
               Row(

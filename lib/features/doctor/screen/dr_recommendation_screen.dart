@@ -1,4 +1,5 @@
 import 'package:doctor/shared/back_app_bar.dart';
+import 'package:doctor/shared/custom_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -42,62 +43,7 @@ class _DrRecommendationScreenState extends State<DrRecommendationScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: const Color(0xFFF5F5F5),
-                          hintText: 'Search',
-                          hintStyle: TextStyle(color: glass.colorIcons),
-                          prefixIcon: Image.asset(
-                            "assets/icons/search-normal.png",
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide.none,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide(
-                              color: glass.primaryBlue,
-                              width: 2
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Gap(width * 0.016),
-                    IconButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) {
-                            return Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.fromLTRB(2, 2, 2, 20),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(28),
-                                ),
-                              ),
-                              child:  DrSheet(),
-                            );
-                          },
-                        );
-                      },
-                      icon: const Icon(Icons.filter_list),
-                    )
-                  ],
-                ),
+               CustomSearchBar(),
                 Gap(height * 0.015),
                 DrRecommendationWidget(),
               ],

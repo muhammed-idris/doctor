@@ -11,7 +11,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.title});
 
   @override
-  Size get preferredSize => Size.fromHeight(60);
+  Size get preferredSize => Size.fromHeight(80);
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -26,7 +26,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
     return AppBar(
       backgroundColor: glass.background,
-      toolbarHeight: height * 0.06,
+      toolbarHeight: height * 0.08,
       elevation: 0,
       scrolledUnderElevation: 0,
       title: Row(

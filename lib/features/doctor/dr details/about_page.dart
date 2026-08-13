@@ -17,18 +17,14 @@ class AboutPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-
           SizedBox(height: 12),
-
           Text(
             'Dr. Jenny Watson is the top most Immunologists '
                 'specialist in Christ Hospital at London. She '
                 'achieved several awards for her wonderful '
                 'contribution in medical field.',
           ),
-
           SizedBox(height: 25),
-
           Text(
             'Working Time',
             style: TextStyle(
@@ -36,10 +32,9 @@ class AboutPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-
           SizedBox(height: 12),
-
           Text('Monday - Friday, 08.00 AM - 20.00 PM'),
+
         ],
       ),
     );

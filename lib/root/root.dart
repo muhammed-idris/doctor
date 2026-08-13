@@ -15,7 +15,6 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  final PageController controller = PageController();
   int currentIndex = 0;
 
   final List<Widget> screens = [
@@ -26,27 +25,11 @@ class _RootState extends State<Root> {
     ProfileScreen(),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() => currentIndex = index);
-    controller.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 280),
-      curve: Curves.easeOutCubic,
-    );
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: controller,
-        onPageChanged: (index) => setState(() => currentIndex = index),
+      body: IndexedStack(
+        index: currentIndex,
         children: screens,
       ),
       bottomNavigationBar: Theme(
@@ -58,7 +41,7 @@ class _RootState extends State<Root> {
           elevation: 0,
           backgroundColor: Colors.transparent,
           currentIndex: currentIndex,
-          onTap: _onItemTapped,
+          onTap: (index) => setState(() => currentIndex = index),
           type: BottomNavigationBarType.fixed,
           selectedItemColor: AppColors.primaryBlue,
           unselectedItemColor: Colors.grey,
@@ -97,12 +80,20 @@ class _RootState extends State<Root> {
               label: "Search",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined ,color: Colors.black,),
-              activeIcon: Icon(Icons.calendar_month_rounded),
+              icon: Image.asset(
+                "assets/icons/calendar-linear.png",
+                height: 24,
+                color: Colors.black,
+              ),
+              activeIcon: Image.asset(
+                "assets/icons/calendar-bold.png",
+                height: 24,
+                color: AppColors.primaryBlue,
+              ),
               label: "Appointment",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline_rounded,color: Colors.black,),
+              icon: Icon(Icons.person_outline_rounded, color: Colors.black),
               activeIcon: Icon(Icons.person_rounded),
               label: "Profile",
             ),

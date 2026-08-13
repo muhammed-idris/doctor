@@ -1,3 +1,4 @@
+import 'package:doctor/features/book_appointment/screens/book_appointment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -171,6 +172,40 @@ class _DrDetailsScreenState extends State<DrDetailsScreen> {
               ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+            width * 0.05,
+            height * 0.015,
+            width * 0.05,
+            height * 0.015,
+          ),
+          child: SizedBox(
+            width: double.infinity,
+            height: height * 0.065,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => BookAppointmentScreen(),));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: glass.primaryBlue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                elevation: 0,
+              ),
+              child: Text(
+                "Make An Appointment",
+                style: TextStyles.headline1.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
