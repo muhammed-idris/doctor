@@ -30,7 +30,6 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         body: Padding(
           padding: EdgeInsets.only(
-            top: height * 0.03,
             left: width * 0.04,
             right: width * 0.04,
           ),
@@ -45,7 +44,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: TextFormField(
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: const Color(0xFFF5F5F5),
+                          fillColor: glass.searchColor,
                           hintText: 'Search',
                           hintStyle: TextStyle(color: glass.colorIcons),
                           prefixIcon: Image.asset(

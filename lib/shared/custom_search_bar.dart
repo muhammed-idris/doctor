@@ -38,7 +38,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             onChanged: widget.onChanged,
             decoration: InputDecoration(
               filled: true,
-              fillColor:glass.doctorBackGround,
+              fillColor:glass.searchColor,
 
               hintText: widget.hintText,
               hintStyle: TextStyle(

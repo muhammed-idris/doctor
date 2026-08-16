@@ -24,7 +24,7 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showBackButton;
 
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => const Size.fromHeight(90);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
       scrolledUnderElevation: 0,
       backgroundColor: glass.background,
       centerTitle: true,
-      toolbarHeight: height * 0.08,
+      toolbarHeight: height * 0.09,
 
       // Back button
       leading: showBackButton

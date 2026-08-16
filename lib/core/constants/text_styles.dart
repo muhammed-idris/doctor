@@ -8,8 +8,8 @@ class TextStyles {
   TextStyles._();
 
   static final TextStyle display = GoogleFonts.inter(
-    fontSize: 55,
-    fontWeight: FontWeight.normal,
+    fontSize: 25,
+    fontWeight: FontWeight.bold,
     color: AppColor.primary,
   );
 

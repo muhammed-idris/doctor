@@ -1,3 +1,4 @@
+import 'package:doctor/root/root.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
@@ -163,7 +164,8 @@ class BookingConfirmedScreen extends StatelessWidget {
                   width: width,
                   child: ElevatedButton(
                     onPressed: onDone ??
-                            () => Navigator.of(context).popUntil((route) => route.isFirst),
+                            () => Navigator.pushReplacement(context, MaterialPageRoute(builder:
+                            (context) => Root(),)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: glass.primaryBlue,
                       padding: EdgeInsets.symmetric(vertical: height * 0.018),

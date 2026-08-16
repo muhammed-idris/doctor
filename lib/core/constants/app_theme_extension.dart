@@ -11,6 +11,9 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
   final Color primaryBlue;
   final Color doctorBackGround;
   final Color shadow;
+  final Color searchColor;
+  final Color borderFieldColor;
+
   final List<Color> nearbyColor;
   final List<Color> surfaceGradient;
   final List<Color> borderColors;
@@ -27,6 +30,8 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     required this.shadow,
     required this.colorIcons,
     required this.primaryBlue,
+    required this.searchColor,
+    required this.borderFieldColor,
   });
 
   // ---- Dark ----
@@ -37,6 +42,8 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     textMuted: AppColor.primary,
     background: AppColors.white,
     primaryBlue: AppColors.primaryBlue,
+    searchColor: Color(0xFFF5F5F5),
+    borderFieldColor: Color(0xFFE0E0E0),
 
     nearbyColor: [AppColors.lightBlue, AppColors.darkBlue],
 
@@ -57,6 +64,8 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     background: AppColors.white,
     colorIcons: Color(0xFFBDBDBD),
     shadow: AppColors.shadow,
+    searchColor: Color(0xFFF5F5F5),
+    borderFieldColor: Color(0xFFE0E0E0),
 
     nearbyColor: [AppColors.lightBlue, AppColors.darkBlue],
 
@@ -73,6 +82,7 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
     Color? textPrimary,
     Color? textMuted,
     Color? copyColor,
+    Color? borderFieldColor,
   }) {
     return GlassTheme(
       hintText: hintText ?? this.hintText,
@@ -86,7 +96,8 @@ class GlassTheme extends ThemeExtension<GlassTheme> {
       shadow: shadow,
       colorIcons: colorIcons,
       primaryBlue: primaryBlue,
-
+      searchColor: searchColor,
+      borderFieldColor: borderFieldColor ?? this.borderFieldColor,
     );
   }
 

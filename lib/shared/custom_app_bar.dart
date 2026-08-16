@@ -25,6 +25,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     final glass = Theme.of(context).extension<GlassTheme>()?? GlassTheme.light ;
 
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: glass.background,
       toolbarHeight: height * 0.08,
       elevation: 0,

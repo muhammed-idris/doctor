@@ -1,5 +1,5 @@
-import 'package:doctor/features/home/screens/home_screen.dart';
-import 'package:doctor/root/root.dart';
+import 'package:doctor/features/on_boarding/screens/get_started_screen.dart';
+import 'package:doctor/features/on_boarding/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'core/constants/app_theme_extension.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: glass.background ,
       ),
       title: 'Flutter Demo',
-      home:Root(),
+      home: SplashScreen(),
     );
   }
 }
