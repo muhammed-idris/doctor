@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../core/constants/app_theme_extension.dart';
-import '../core/constants/color_manger.dart';
-import '../core/constants/text_styles.dart';
-import 'custom_container.dart';
+import '../../../core/constants/app_theme_extension.dart';
+import '../../../core/constants/color_manger.dart';
+import '../../../core/constants/text_styles.dart';
+import '../../../shared/custom_container.dart';
 
-class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BackAppBar({
+class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const ProfileAppBar({
     super.key,
     required this.appBarTitle,
     this.button,
@@ -53,10 +53,7 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: EdgeInsets.zero,
           height: height * 0.045,
           borderRadius: 15,
-          gradient: LinearGradient(
-            colors: glass.surfaceGradient,
-          ),
-          borderColors: glass.borderColors,
+          backgroundColor: Colors.transparent,
           child: Center(
             child: Icon(
               Icons.arrow_back_ios_new_rounded,
@@ -90,7 +87,6 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
               borderRadius: 15,
               backgroundColor:
               buttonColor ?? GridColor.white850,
-              borderColors: glass.borderColors,
               child: Center(
                 child: button,
               ),
