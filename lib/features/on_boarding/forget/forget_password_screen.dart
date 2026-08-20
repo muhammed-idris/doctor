@@ -1,4 +1,5 @@
 import 'package:doctor/core/constants/text_styles.dart';
+import 'package:doctor/shared/back_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -28,9 +29,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        appBar: BackAppBar(appBarTitle: '',),
         body: Padding(
           padding: EdgeInsets.only(
-            top: height * 0.1,
             left: width * 0.06,
             right: width * 0.06,
           ),

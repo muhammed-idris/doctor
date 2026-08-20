@@ -1,4 +1,5 @@
 import 'package:doctor/core/constants/text_styles.dart';
+import 'package:doctor/shared/back_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -49,6 +50,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        appBar: BackAppBar(appBarTitle: ""),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(
