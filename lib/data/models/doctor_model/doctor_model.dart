@@ -1,4 +1,3 @@
-
 import '../location_model/city_model.dart';
 import 'doctor_specialization.dart';
 
@@ -46,10 +45,13 @@ class DoctorModel {
       address: json['address'],
       description: json['description'],
       degree: json['degree'],
+
       specialization: json['specialization'] != null
           ? SpecializationModel.fromJson(json['specialization'])
           : null,
+
       city: json['city'] != null ? CityModel.fromJson(json['city']) : null,
+
       appointPrice: json['appoint_price'] ?? 0,
       startTime: json['start_time'],
       endTime: json['end_time'],
@@ -73,5 +75,38 @@ class DoctorModel {
       'start_time': startTime,
       'end_time': endTime,
     };
+  }
+}
+
+// ============================================================
+// DOCTOR LIST RESPONSE
+// ============================================================
+
+class DoctorListResponseModel {
+  final String message;
+  final List<DoctorModel> data;
+  final bool status;
+  final int code;
+
+  DoctorListResponseModel({
+    required this.message,
+    required this.data,
+    this.status = true,
+    this.code = 200,
+  });
+
+  factory DoctorListResponseModel.fromJson(Map<String, dynamic> json) {
+    return DoctorListResponseModel(
+      message: json['message'] ?? '',
+
+      data: json['data'] != null
+          ? List<DoctorModel>.from(
+              (json['data'] as List).map((e) => DoctorModel.fromJson(e)),
+            )
+          : [],
+
+      status: json['status'] ?? true,
+      code: json['code'] ?? 200,
+    );
   }
 }

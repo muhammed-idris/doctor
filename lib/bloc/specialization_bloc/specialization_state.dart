@@ -1,3 +1,4 @@
+import '../../data/models/doctor_model/doctor_model.dart';
 import '../../data/models/doctor_model/doctor_specialization.dart';
 
 abstract class SpecializationState {}
@@ -12,10 +13,10 @@ class SpecializationsSuccess extends SpecializationState {
   SpecializationsSuccess(this.specializations);
 }
 
-class SpecializationSuccess extends SpecializationState {
-  final SpecializationModel specialization;
+class SpecializationDoctorsSuccess extends SpecializationState {
+  final List<DoctorModel> doctors;
 
-  SpecializationSuccess(this.specialization);
+  SpecializationDoctorsSuccess(this.doctors);
 }
 
 class SpecializationFailure extends SpecializationState {

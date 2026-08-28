@@ -1,7 +1,8 @@
+import 'package:doctor/bloc/specialization_bloc/specialization_event.dart';
+import 'package:doctor/bloc/specialization_bloc/specialization_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../data/models/specialization_model/specialization_repo.dart';
-import 'specialization_event.dart';
-import 'specialization_state.dart';
 
 class SpecializationBloc
     extends Bloc<SpecializationEvent, SpecializationState> {
@@ -12,7 +13,7 @@ class SpecializationBloc
       : super(SpecializationInitial()) {
 
     on<GetAllSpecializations>(_getAllSpecializations);
-    on<GetSpecialization>(_getSpecialization);
+    on<GetSpecializationDoctors>(_getSpecializationDoctors);
   }
 
   Future<void> _getAllSpecializations(
@@ -25,33 +26,26 @@ class SpecializationBloc
       final specializations =
       await repository.getAllSpecializations();
 
-      emit(
-        SpecializationsSuccess(specializations),
-      );
+      emit(SpecializationsSuccess(specializations));
     } catch (e) {
-      emit(
-        SpecializationFailure(e.toString()),
-      );
+      emit(SpecializationFailure(e.toString()));
     }
   }
 
-  Future<void> _getSpecialization(
-      GetSpecialization event,
+  Future<void> _getSpecializationDoctors(
+      GetSpecializationDoctors event,
       Emitter<SpecializationState> emit,
       ) async {
     emit(SpecializationLoading());
 
     try {
-      final specialization =
-      await repository.getSpecialization(event.id);
+      final doctors = await repository.getDoctorsBySpecialization(
+        event.specializationId,
+      );
 
-      emit(
-        SpecializationSuccess(specialization),
-      );
+      emit(SpecializationDoctorsSuccess(doctors));
     } catch (e) {
-      emit(
-        SpecializationFailure(e.toString()),
-      );
+      emit(SpecializationFailure(e.toString()));
     }
   }
 }

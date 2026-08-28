@@ -1,31 +1,31 @@
+import 'package:doctor/features/doctor/model/doctor_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import '../../../data/models/doctor_model/doctor_model.dart';
 import 'dr_recommendation_card.dart';
 
-class DrRecommendationWidget extends StatefulWidget {
-  const DrRecommendationWidget({super.key});
+class DrRecommendationWidget extends StatelessWidget {
+  final List<DoctorModel> doctors;
 
-  @override
-  State<DrRecommendationWidget> createState() =>
-      _DrRecommendationWidgetState();
-}
-
-class _DrRecommendationWidgetState extends State<DrRecommendationWidget> {
-
+  const DrRecommendationWidget({super.key, required this.doctors});
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
 
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 10,
-      separatorBuilder: (context, index) => Gap(height * 0.005),
+
+      itemCount: doctors.length,
+
+      separatorBuilder: (context, index) {
+        return Gap(height * 0.005);
+      },
+
       itemBuilder: (context, index) {
-        return const DrRecommendationCard();
+        return DrRecommendationCard(doctor: doctors[index]);
       },
     );
   }

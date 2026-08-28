@@ -95,7 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   ],
                 ),
                 Gap(height * 0.015),
-                DrRecommendationWidget(),
+                DrRecommendationWidget(doctors: [],),
               ],
             ),
           ),

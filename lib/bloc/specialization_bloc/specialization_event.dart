@@ -2,8 +2,8 @@ abstract class SpecializationEvent {}
 
 class GetAllSpecializations extends SpecializationEvent {}
 
-class GetSpecialization extends SpecializationEvent {
-  final int id;
+class GetSpecializationDoctors extends SpecializationEvent {
+  final int specializationId;
 
-  GetSpecialization(this.id);
+  GetSpecializationDoctors(this.specializationId);
 }
