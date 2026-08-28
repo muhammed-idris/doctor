@@ -13,7 +13,7 @@ class ApiUrl {
   // ---------------- Home Module ----------------
   static const String homeIndexUrl = "${baseUrl}home/index";
 
-  // ---------------- Governrate Module ----------------
+  // ---------------- Governorate Module ----------------
   static const String governorateIndexUrl = "${baseUrl}governrate/index";
 
   // ---------------- City Module ----------------
