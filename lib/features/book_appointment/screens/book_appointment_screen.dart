@@ -1,13 +1,13 @@
 import 'package:doctor/features/book_appointment/screens/step_one_screen.dart';
 import 'package:doctor/features/book_appointment/screens/step_three_screen.dart';
 import 'package:doctor/features/book_appointment/screens/step_two_screen.dart';
-import 'package:doctor/features/doctor/model/dr_model.dart';
 import 'package:doctor/shared/back_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/text_styles.dart';
 import '../../../shared/custom_snack_bar.dart';
+import '../../doctor/model/dr_model.dart';
 import '../widgets/appointment_steps.dart';
 import '../widgets/appointment_type.dart';
 import '../widgets/payment_method.dart';

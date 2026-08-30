@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../data/models/doctor_model/doctor_model.dart' as api;
 
+
 class DoctorInfo {
   final String name;
   final String specialty;
