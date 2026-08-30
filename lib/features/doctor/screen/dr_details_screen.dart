@@ -1,4 +1,5 @@
 import 'package:doctor/features/book_appointment/screens/book_appointment_screen.dart';
+import 'package:doctor/features/inbox/screens/inbox_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -11,6 +12,7 @@ import '../../../shared/custom_container.dart';
 import '../dr details/about_page.dart';
 import '../dr details/doctor_tabs.dart';
 import '../dr details/review_page.dart';
+import '../model/dr_model.dart' as booking;
 
 class DrDetailsScreen extends StatefulWidget {
   final DoctorModel doctor;
@@ -86,9 +88,9 @@ class _DrDetailsScreenState extends State<DrDetailsScreen> {
                       width: width * 0.22,
                       height: width * 0.22,
 
-                      child: doctor.photo != null && doctor.photo!.isNotEmpty
+                      child: doctor.photo.isNotEmpty
                           ? Image.network(
-                              doctor.photo!,
+                               doctor.photo,
                               fit: BoxFit.cover,
 
                               errorBuilder: (_, __, ___) {
@@ -136,7 +138,9 @@ class _DrDetailsScreenState extends State<DrDetailsScreen> {
                             children: [
                               Flexible(
                                 child: Text(
-                                  doctor.specialization?.name ?? "General",
+                                  doctor.specialization.name.isEmpty
+                                      ? "General"
+                                      : doctor.specialization.name,
 
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -164,7 +168,9 @@ class _DrDetailsScreenState extends State<DrDetailsScreen> {
 
                               Flexible(
                                 child: Text(
-                                  doctor.city?.name ?? "Unknown City",
+                                  doctor.city.name.isEmpty
+                                      ? "Unknown City"
+                                      : doctor.city.name,
 
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -219,7 +225,14 @@ class _DrDetailsScreenState extends State<DrDetailsScreen> {
                     padding: EdgeInsets.only(top: height * 0.015),
 
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const InboxScreen(),
+                          ),
+                        );
+                      },
 
                       child: Image.asset(
                         "assets/icons/chat-line-linear.png",
@@ -287,7 +300,9 @@ class _DrDetailsScreenState extends State<DrDetailsScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BookAppointmentScreen(),
+                    builder: (context) => BookAppointmentScreen(
+                      doctor: booking.DoctorInfo.fromModel(doctor),
+                    ),
                   ),
                 );
               },

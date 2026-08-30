@@ -29,7 +29,7 @@ class _CreateNewMessageBottomSheetState
       message: '',
       time: '',
       unread: 0,
-      image: 'assets/images/doctor_1.png',
+       image: 'assets/images/dr_randy.png',
     ),
     DoctorChatModel(
       name: 'Dr. Jack Sullivan',
@@ -37,7 +37,7 @@ class _CreateNewMessageBottomSheetState
       message: '',
       time: '',
       unread: 0,
-      image: 'assets/images/doctor_2.png',
+       image: 'assets/images/dr_randy.png',
     ),
     DoctorChatModel(
       name: 'Drg. Hanna Stanton',
@@ -45,7 +45,7 @@ class _CreateNewMessageBottomSheetState
       message: '',
       time: '',
       unread: 0,
-      image: 'assets/images/doctor_3.png',
+       image: 'assets/images/dr_randy.png',
     ),
     DoctorChatModel(
       name: 'Dr. Emery Lubin',
@@ -53,7 +53,7 @@ class _CreateNewMessageBottomSheetState
       message: '',
       time: '',
       unread: 0,
-      image: 'assets/images/doctor_4.png',
+       image: 'assets/images/dr_randy.png',
     ),
     DoctorChatModel(
       name: 'Dr. Emery Lubin',
@@ -61,7 +61,7 @@ class _CreateNewMessageBottomSheetState
       message: '',
       time: '',
       unread: 0,
-      image: 'assets/images/doctor_5.png',
+       image: 'assets/images/dr_randy.png',
     ),
     DoctorChatModel(
       name: 'Dr. Nolan Geidt',
@@ -69,7 +69,7 @@ class _CreateNewMessageBottomSheetState
       message: '',
       time: '',
       unread: 0,
-      image: 'assets/images/doctor_6.png',
+       image: 'assets/images/dr_randy.png',
     ),
     DoctorChatModel(
       name: 'Dr. Gretchen Saris',
@@ -77,7 +77,7 @@ class _CreateNewMessageBottomSheetState
       message: '',
       time: '',
       unread: 0,
-      image: 'assets/images/doctor_7.png',
+       image: 'assets/images/dr_randy.png',
     ),
   ];
 

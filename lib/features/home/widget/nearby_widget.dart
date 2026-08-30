@@ -7,7 +7,12 @@ import '../../../core/constants/text_styles.dart';
 import '../../../shared/custom_container.dart';
 
 class NearbyWidget extends StatefulWidget {
-  const NearbyWidget({super.key});
+  const NearbyWidget({
+    super.key,
+    this.onPressed,
+  });
+
+  final VoidCallback? onPressed;
 
   @override
   State<NearbyWidget> createState() => _NearbyWidgetState();
@@ -41,7 +46,7 @@ class _NearbyWidgetState extends State<NearbyWidget> {
               ),
               Gap(height * 0.01),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: widget.onPressed,
                 child: Text(
                   "Find Nearby",
                   style: TextStyles.success.copyWith(

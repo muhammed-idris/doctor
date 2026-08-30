@@ -2,6 +2,7 @@
 import 'package:doctor/features/on_boarding/screens/get_started_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/storge/token_storge.dart';
 import '../../../root/root.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,16 +18,21 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
+    _openNextScreen();
+  }
 
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (_) => const GetStartedScreen(),
-          ),
-        );
-      }
-    });
+  Future<void> _openNextScreen() async {
+    await Future<void>.delayed(const Duration(seconds: 3));
+    if (!mounted) return;
+
+    final hasToken = await TokenStorage.hasToken();
+    if (!mounted) return;
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => hasToken ? const Root() : const GetStartedScreen(),
+      ),
+    );
   }
 
   @override
@@ -38,11 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Image.asset(
           'assets/images/Splash Screen.png',
-          width: width * 1 ,
-          height: height * 1,
+          width: width,
+          height: height,
           fit: BoxFit.cover,
-
-
         ),
       ),
     );

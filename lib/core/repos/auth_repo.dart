@@ -1,18 +1,18 @@
-import 'package:dio/dio.dart';
 import 'package:doctor/data/models/auth_model/login_model.dart';
 
 import '../api/api_url.dart';
+import '../api/dio_client.dart';
 
 class AuthRepository {
-  final Dio dio;
+  final DioClient dioClient;
 
-  AuthRepository(this.dio);
+  AuthRepository(this.dioClient);
 
   Future<AuthModel> login({
     required String email,
     required String password,
   }) async {
-    final response = await dio.post(
+    final response = await dioClient.post(
       ApiUrl.loginUrl,
       data: {
         'email': email,
@@ -28,7 +28,7 @@ class AuthRepository {
     required String email,
     required String password,
   }) async {
-    final response = await dio.post(
+    final response = await dioClient.post(
       ApiUrl.registerUrl,
       data: {
         'number': number,
@@ -41,6 +41,6 @@ class AuthRepository {
   }
 
   Future<void> logout() async {
-    await dio.post(ApiUrl.logoutUrl);
+    await dioClient.post(ApiUrl.logoutUrl);
   }
 }

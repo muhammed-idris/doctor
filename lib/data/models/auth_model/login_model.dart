@@ -10,9 +10,17 @@ class AuthModel {
   });
 
   factory AuthModel.fromJson(Map<String, dynamic> json) {
+    final rawData = json['data'];
+    final payload = rawData is Map
+        ? Map<String, dynamic>.from(rawData)
+        : json;
+    final rawUser = payload['user'];
+
     return AuthModel(
-      token: json['token'] ?? '',
-      user: UserModel.fromJson(json['user'] ?? {}),
+      token: '${payload['token'] ?? payload['access_token'] ?? ''}',
+      user: UserModel.fromJson(
+        rawUser is Map ? Map<String, dynamic>.from(rawUser) : null,
+      ),
     );
   }
 

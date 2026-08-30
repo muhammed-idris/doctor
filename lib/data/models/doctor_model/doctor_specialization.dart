@@ -1,1 +1,0 @@
-export '../specialization_model/specialization_model.dart';

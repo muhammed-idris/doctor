@@ -1,5 +1,6 @@
 import 'package:doctor/core/constants/text_styles.dart';
 import 'package:doctor/features/profile/screens/settings_screen.dart';
+import 'package:doctor/features/my appointment/screens/my_appointment_screen.dart';
 import 'package:doctor/shared/back_app_bar.dart';
 import 'package:doctor/shared/custom_container.dart';
 import 'package:flutter/material.dart';
@@ -146,7 +147,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               borderRadius: const BorderRadius.horizontal(
                                 left: Radius.circular(16),
                               ),
-                              onTap: () {},
+                               onTap: () {
+                                 Navigator.push(
+                                   context,
+                                   MaterialPageRoute(
+                                     builder: (_) => const MyAppointmentScreen(),
+                                   ),
+                                 );
+                               },
                               child: Center(
                                 child: Text(
                                   "My Appointment",

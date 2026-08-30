@@ -27,18 +27,21 @@ class SpecializationRepository {
       final rawData = body['data'];
       final List<dynamic> data = rawData is List
           ? rawData
-          : rawData is Map<String, dynamic>
-              ? _firstList(rawData, const [
-                  'specializations',
-                  'specialties',
-                  'data',
-                ])
+          : rawData is Map
+              ? _firstList(
+                  Map<String, dynamic>.from(rawData),
+                  const [
+                    'specializations',
+                    'specialties',
+                    'data',
+                  ],
+                )
               : <dynamic>[];
 
       return data
           .map(
             (json) => SpecializationModel.fromJson(
-              json is Map<String, dynamic> ? json : null,
+              json is Map ? Map<String, dynamic>.from(json) : null,
             ),
           )
           .where((specialization) => specialization.id > 0)
@@ -69,8 +72,11 @@ class SpecializationRepository {
       final List<dynamic> doctorsJson;
       if (rawData is List) {
         doctorsJson = rawData;
-      } else if (rawData is Map<String, dynamic>) {
-        doctorsJson = _firstList(rawData, const ['doctors', 'data']);
+      } else if (rawData is Map) {
+        doctorsJson = _firstList(
+          Map<String, dynamic>.from(rawData),
+          const ['doctors', 'data'],
+        );
       } else {
         doctorsJson = const [];
       }
@@ -78,7 +84,9 @@ class SpecializationRepository {
       return doctorsJson
           .map(
             (json) => DoctorModel.fromJson(
-              json is Map<String, dynamic> ? json : <String, dynamic>{},
+              json is Map
+                  ? Map<String, dynamic>.from(json)
+                  : <String, dynamic>{},
             ),
           )
           .where((doctor) => doctor.id > 0)
@@ -91,8 +99,8 @@ class SpecializationRepository {
   }
 
   Map<String, dynamic> _asMap(dynamic value) {
-    if (value is Map<String, dynamic>) {
-      return value;
+    if (value is Map) {
+      return Map<String, dynamic>.from(value);
     }
 
     throw const FormatException(

@@ -60,7 +60,16 @@ class _HomeScreenState extends State<HomeScreen> {
               // ==================================================
               const Gap(30),
 
-              NearbyWidget(),
+               NearbyWidget(
+                 onPressed: () {
+                   Navigator.push(
+                     context,
+                     MaterialPageRoute(
+                       builder: (_) => const DrRecommendationScreen(),
+                     ),
+                   );
+                 },
+               ),
 
               Gap(height * 0.01),
 

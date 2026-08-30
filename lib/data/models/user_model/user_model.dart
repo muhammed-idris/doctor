@@ -13,13 +13,14 @@ class UserModel {
     this.image,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromJson(Map<String, dynamic>? json) {
+    final data = json ?? const <String, dynamic>{};
     return UserModel(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
-      email: json['email'] ?? '',
-      phone: json['phone'],
-      image: json['image'],
+      id: int.tryParse('${data['id'] ?? ''}') ?? 0,
+      name: '${data['name'] ?? ''}',
+      email: '${data['email'] ?? ''}',
+      phone: data['phone']?.toString(),
+      image: data['image']?.toString(),
     );
   }
 

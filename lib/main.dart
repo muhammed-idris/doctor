@@ -24,7 +24,7 @@ void main() {
         BlocProvider(
           create: (_) => AuthBloc(
             authRepository: AuthRepository(
-              dioClient.dio,
+              dioClient,
             ),
           ),
         ),

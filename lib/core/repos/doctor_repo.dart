@@ -32,9 +32,14 @@ class DoctorRepository {
     try {
       final response = await dioClient.get(ApiUrl.doctorShowUrl(id));
 
-      final data = response.data;
+      final data = response.data is Map
+          ? Map<String, dynamic>.from(response.data as Map)
+          : const <String, dynamic>{};
+      final rawDoctor = data['data'] is Map
+          ? Map<String, dynamic>.from(data['data'] as Map)
+          : data;
 
-      return DoctorModel.fromJson(data['data']);
+      return DoctorModel.fromJson(rawDoctor);
     } catch (e) {
       throw Exception('Failed to load doctor: $e');
     }

@@ -1,6 +1,7 @@
 import 'package:doctor/features/book_appointment/screens/step_one_screen.dart';
 import 'package:doctor/features/book_appointment/screens/step_three_screen.dart';
 import 'package:doctor/features/book_appointment/screens/step_two_screen.dart';
+import 'package:doctor/features/doctor/model/dr_model.dart';
 import 'package:doctor/shared/back_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -13,7 +14,12 @@ import '../widgets/payment_method.dart';
 import 'book_confirmed_screen.dart';
 
 class BookAppointmentScreen extends StatefulWidget {
-  const BookAppointmentScreen({super.key});
+  const BookAppointmentScreen({
+    super.key,
+    this.doctor = DoctorInfo.placeholder,
+  });
+
+  final DoctorInfo doctor;
 
   @override
   State<BookAppointmentScreen> createState() => _BookAppointmentScreenState();
@@ -71,6 +77,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => BookingConfirmedScreen(
+          doctor: widget.doctor,
           selectedDate: selectedDate,
           selectedTime: selectedTime,
           appointmentType: appointmentType,
@@ -129,6 +136,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
                         setState(() => paymentSelection = selection),
                   ),
                   StepThreeScreen(
+                    doctor: widget.doctor,
                     selectedDate: selectedDate,
                     selectedTime: selectedTime,
                     appointmentType: appointmentType,

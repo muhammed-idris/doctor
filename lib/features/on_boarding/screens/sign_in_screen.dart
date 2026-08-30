@@ -30,6 +30,31 @@ class _SignInScreenState extends State<SignInScreen> {
   bool _obscurePassword = true;
 
   @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    final email = emailController.text.trim();
+    final password = passwordController.text;
+
+    if (email.isEmpty || !email.contains('@')) {
+      AppSnackbar.showError(context, 'Enter a valid email address');
+      return;
+    }
+    if (password.isEmpty) {
+      AppSnackbar.showError(context, 'Enter your password');
+      return;
+    }
+
+    context.read<AuthBloc>().add(
+          LoginRequested(email: email, password: password),
+        );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
@@ -167,15 +192,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       Gap(height * 0.03),
                       CustomButton(
-                        text: 'Login',
-                        onPressed: () {
-                          context.read<AuthBloc>().add(
-                            LoginRequested(
-                              email: emailController.text.trim(),
-                              password: passwordController.text,
-                            ),
-                          );
-                        },
+                        text: state is AuthLoading ? 'Signing in...' : 'Login',
+                        onPressed: state is AuthLoading ? null : _submit,
                       ),
                       Gap(height * 0.06),
                       const OrDivider(),

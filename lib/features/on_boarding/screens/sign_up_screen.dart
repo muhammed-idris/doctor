@@ -1,4 +1,5 @@
 import 'package:doctor/core/constants/text_styles.dart';
+import 'package:doctor/features/on_boarding/forget/forget_password_screen.dart';
 import 'package:doctor/features/on_boarding/screens/sign_in_screen.dart';
 import 'package:doctor/root/root.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController passwordController = TextEditingController();
   bool rememberMe = false;
   bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    numberController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    final number = numberController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text;
+
+    if (number.isEmpty) {
+      AppSnackbar.showError(context, 'Enter your phone number');
+      return;
+    }
+    if (email.isEmpty || !email.contains('@')) {
+      AppSnackbar.showError(context, 'Enter a valid email address');
+      return;
+    }
+    if (password.length < 6) {
+      AppSnackbar.showError(context, 'Password must be at least 6 characters');
+      return;
+    }
+
+    context.read<AuthBloc>().add(
+          RegisterRequested(
+            number: number,
+            email: email,
+            password: password,
+          ),
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +184,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ],
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const ForgetPasswordScreen(),
+                                ),
+                              );
+                            },
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
                               minimumSize: Size.zero,
@@ -166,16 +209,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       Gap(height * 0.03),
                       CustomButton(
-                        text: 'Sign Up',
-                        onPressed: () {
-                          context.read<AuthBloc>().add(
-                            RegisterRequested(
-                              number: numberController.text.trim(),
-                              email: emailController.text.trim(),
-                              password: passwordController.text,
-                            ),
-                          );
-                        },
+                        text: state is AuthLoading ? 'Creating account...' : 'Sign Up',
+                        onPressed: state is AuthLoading ? null : _submit,
                       ),
                       Gap(height * 0.04),
                       const OrDivider(),

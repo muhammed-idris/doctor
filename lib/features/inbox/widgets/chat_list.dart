@@ -10,7 +10,7 @@ class DoctorChatList extends StatelessWidget {
       message: "Fine, I'll do a check. Does the\npatient have a history of certain\ndiseases?",
       time: '7:11 PM',
       unread: 2,
-      image: 'assets/images/doctor_1.png',
+      image: 'assets/images/dr_randy.png',
     ),
     DoctorChatModel(
       name: 'Dr. Jack Sullivan',
@@ -18,7 +18,7 @@ class DoctorChatList extends StatelessWidget {
       message: "Fine, I'll do a check. Does the\npatient have a history of certain\ndiseases?",
       time: '7:11 PM',
       unread: 2,
-      image: 'assets/images/doctor_2.png',
+      image: 'assets/images/dr_randy.png',
     ),
     DoctorChatModel(
       name: 'Drg. Hanna Stanton',
@@ -26,7 +26,7 @@ class DoctorChatList extends StatelessWidget {
       message: "Fine, I'll do a check. Does the\npatient have a history of certain\ndiseases?",
       time: '7:11 PM',
       unread: 2,
-      image: 'assets/images/doctor_3.png',
+      image: 'assets/images/dr_randy.png',
     ),
   ];
 

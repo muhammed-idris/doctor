@@ -44,9 +44,9 @@ class DrRecommendationCard extends StatelessWidget {
                 width: width * 0.22,
                 height: width * 0.22,
 
-                child: doctor.photo != null && doctor.photo!.isNotEmpty
+                child: doctor.photo.isNotEmpty
                     ? Image.network(
-                        doctor.photo!,
+                        doctor.photo,
                         fit: BoxFit.cover,
 
                         errorBuilder: (context, error, stackTrace) {
@@ -96,7 +96,9 @@ class DrRecommendationCard extends StatelessWidget {
                       children: [
                         Flexible(
                           child: Text(
-                            doctor.specialization?.name ?? "General",
+                            doctor.specialization.name.isEmpty
+                                ? "General"
+                                : doctor.specialization.name,
 
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -124,7 +126,9 @@ class DrRecommendationCard extends StatelessWidget {
 
                         Flexible(
                           child: Text(
-                            doctor.city?.name ?? "Unknown City",
+                              doctor.city.name.isEmpty
+                                  ? "Unknown City"
+                                  : doctor.city.name,
 
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,

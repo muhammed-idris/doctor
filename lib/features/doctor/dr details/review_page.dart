@@ -10,7 +10,7 @@ class ReviewsPage extends StatelessWidget {
 
   static const List<ReviewModel> _dummyReviews = [
     ReviewModel(
-      avatarAsset: "assets/images/jane_cooper.png",
+      avatarAsset: "assets/images/dr_randy.png",
       name: "Jane Cooper",
       date: "Today",
       rating: 5,
@@ -18,7 +18,7 @@ class ReviewsPage extends StatelessWidget {
           "As someone who lives in a remote area with limited access to healthcare, this telemedicine app has been a game changer for me. I can easily schedule virtual appointments with doctors and get the care I need without having to travel long distances.",
     ),
     ReviewModel(
-      avatarAsset: "assets/images/jane_cooper.png",
+      avatarAsset: "assets/images/dr_randy.png",
       name: "Robert Fox",
       date: "2 days ago",
       rating: 4,
