@@ -53,11 +53,7 @@ class DioClient {
         queryParameters: queryParameters,
       );
     } on DioException catch (e) {
-      throw Exception(
-        e.response?.data?['message'] ??
-            e.message ??
-            'Something went wrong',
-      );
+      throw Exception(_errorMessage(e));
     }
   }
 
@@ -75,11 +71,7 @@ class DioClient {
         queryParameters: queryParameters,
       );
     } on DioException catch (e) {
-      throw Exception(
-        e.response?.data?['message'] ??
-            e.message ??
-            'Something went wrong',
-      );
+      throw Exception(_errorMessage(e));
     }
   }
 
@@ -95,11 +87,7 @@ class DioClient {
         data: data,
       );
     } on DioException catch (e) {
-      throw Exception(
-        e.response?.data?['message'] ??
-            e.message ??
-            'Something went wrong',
-      );
+      throw Exception(_errorMessage(e));
     }
   }
 
@@ -115,11 +103,25 @@ class DioClient {
         data: data,
       );
     } on DioException catch (e) {
-      throw Exception(
-        e.response?.data?['message'] ??
-            e.message ??
-            'Something went wrong',
-      );
+      throw Exception(_errorMessage(e));
     }
+  }
+
+  String _errorMessage(DioException error) {
+    final responseData = error.response?.data;
+
+    if (responseData is Map) {
+      final message = responseData['message'];
+      if (message is String && message.trim().isNotEmpty) {
+        return message;
+      }
+    }
+
+    final statusCode = error.response?.statusCode;
+    if (statusCode != null) {
+      return 'Request failed with status code $statusCode.';
+    }
+
+    return error.message ?? 'Something went wrong.';
   }
 }

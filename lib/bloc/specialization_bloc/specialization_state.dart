@@ -1,5 +1,5 @@
 import '../../data/models/doctor_model/doctor_model.dart';
-import '../../data/models/doctor_model/doctor_specialization.dart';
+import '../../data/models/specialization_model/specialization_model.dart';
 
 abstract class SpecializationState {}
 

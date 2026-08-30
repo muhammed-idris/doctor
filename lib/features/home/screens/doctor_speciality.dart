@@ -170,8 +170,10 @@ class _DoctorSpecialityScreenState
       context,
       MaterialPageRoute(
         builder: (context) {
-          return BlocProvider.value(
-            value: context.read<SpecializationBloc>(),
+          final parentBloc = context.read<SpecializationBloc>();
+
+          return BlocProvider(
+            create: (_) => SpecializationBloc(parentBloc.repository),
             child: DoctorsBySpecializationScreen(
               specializationId: specializationId,
               specializationName: specializationName,

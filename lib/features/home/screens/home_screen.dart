@@ -1,4 +1,6 @@
 import 'package:doctor/bloc/specialization_bloc/specialization_bloc.dart';
+import 'package:doctor/bloc/specialization_bloc/specialization_event.dart';
+import 'package:doctor/bloc/specialization_bloc/specialization_state.dart';
 import 'package:doctor/features/home/screens/doctor_by_speciality_screen.dart';
 import 'package:doctor/features/home/widget/doctor_speciality_widget.dart';
 import 'package:doctor/features/home/widget/nearby_widget.dart';
@@ -13,6 +15,7 @@ import '../../../bloc/doctor_bloc/doctor_event.dart';
 import '../../../bloc/doctor_bloc/doctor_state.dart';
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/color_manger.dart';
+import '../../../core/constants/image_manger.dart';
 import '../../../core/constants/text_styles.dart';
 import 'doctor_speciality.dart';
 
@@ -30,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // Load doctors when HomeScreen opens
     context.read<DoctorBloc>().add(const GetDoctorsEvent());
+    context.read<SpecializationBloc>().add(GetAllSpecializations());
   }
 
   @override
@@ -98,60 +102,62 @@ class _HomeScreenState extends State<HomeScreen> {
               // ==================================================
               // Doctor Specialities
               // ==================================================
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              BlocBuilder<SpecializationBloc, SpecializationState>(
+                builder: (context, state) {
+                  if (state is SpecializationLoading) {
+                    return const SizedBox(
+                      height: 125,
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  }
 
-                children: [
-                  // ---------------- General ----------------
-                  DoctorSpecialityWidget(
-                    id: 1,
+                  if (state is SpecializationFailure) {
+                    return const SizedBox(
+                      height: 125,
+                      child: Center(
+                        child: Text('Unable to load specializations'),
+                      ),
+                    );
+                  }
 
-                    title: "General",
+                  if (state is SpecializationsSuccess) {
+                    final specializations =
+                        state.specializations.take(4).toList();
 
-                    imageLink: "assets/speciality/Man Doctor Europe 1.png",
+                    if (specializations.isEmpty) {
+                      return const SizedBox(
+                        height: 125,
+                        child: Center(child: Text('No specializations found')),
+                      );
+                    }
 
-                    onTap: () {
-                      _openDoctors(context, id: 1, name: "General");
-                    },
-                  ),
+                    return SizedBox(
+                      height: 125,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: specializations.length,
+                        separatorBuilder: (_, __) => const SizedBox(width: 18),
+                        itemBuilder: (context, index) {
+                          final specialization = specializations[index];
+                          return DoctorSpecialityWidget(
+                            id: specialization.id,
+                            title: specialization.name,
+                            imageLink: _getSpecializationImage(
+                              specialization.name,
+                            ),
+                            onTap: () => _openDoctors(
+                              context,
+                              id: specialization.id,
+                              name: specialization.name,
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  }
 
-                  // ---------------- Neurologic ----------------
-                  DoctorSpecialityWidget(
-                    id: 2,
-
-                    title: "Neurologic",
-
-                    imageLink: "assets/speciality/Brain 1.png",
-
-                    onTap: () {
-                      _openDoctors(context, id: 2, name: "Neurologic");
-                    },
-                  ),
-
-                  DoctorSpecialityWidget(
-                    id: 3,
-
-                    title: "Pediatric",
-
-                    imageLink: "assets/speciality/Iamge.png",
-
-                    onTap: () {
-                      _openDoctors(context, id: 3, name: "Pediatric");
-                    },
-                  ),
-
-                  DoctorSpecialityWidget(
-                    id: 4,
-
-                    title: "Radiology",
-
-                    imageLink: "assets/speciality/Kidneys 1.png",
-
-                    onTap: () {
-                      _openDoctors(context, id: 4, name: "Radiology");
-                    },
-                  ),
-                ],
+                  return const SizedBox(height: 125);
+                },
               ),
 
               Gap(height * 0.015),
@@ -300,8 +306,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
       MaterialPageRoute(
         builder: (context) {
-          return BlocProvider.value(
-            value: context.read<SpecializationBloc>(),
+          final parentBloc = context.read<SpecializationBloc>();
+
+          return BlocProvider(
+            create: (_) => SpecializationBloc(parentBloc.repository),
 
             child: DoctorsBySpecializationScreen(
               specializationId: id,
@@ -311,5 +319,46 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
     );
+  }
+
+  String _getSpecializationImage(String name) {
+    switch (name.trim().toLowerCase()) {
+      case 'general':
+      case 'general medicine':
+        return AssetsManager.general;
+      case 'ent':
+      case 'ear nose throat':
+        return AssetsManager.ent;
+      case 'pediatric':
+      case 'pediatrics':
+        return AssetsManager.pediatric;
+      case 'urologist':
+      case 'urology':
+      case 'radiology':
+        return AssetsManager.urologist;
+      case 'dentistry':
+      case 'dentist':
+        return AssetsManager.dentistry;
+      case 'intestine':
+        return AssetsManager.intestine;
+      case 'histologist':
+      case 'histology':
+        return AssetsManager.histologist;
+      case 'hepatology':
+        return AssetsManager.hepatology;
+      case 'cardiologist':
+      case 'cardiology':
+        return AssetsManager.cardiologist;
+      case 'neurologic':
+      case 'neurology':
+        return AssetsManager.neurologic;
+      case 'pulmonary':
+      case 'pulmonology':
+        return AssetsManager.pulmonary;
+      case 'optometry':
+        return AssetsManager.optometry;
+      default:
+        return AssetsManager.general;
+    }
   }
 }

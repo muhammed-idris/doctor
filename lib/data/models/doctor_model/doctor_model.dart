@@ -1,4 +1,4 @@
-import 'doctor_specialization.dart';
+import '../specialization_model/specialization_model.dart';
 
 class GovernorateModel {
   final int id;
@@ -14,8 +14,8 @@ class GovernorateModel {
       return GovernorateModel(id: 0, name: '');
     }
     return GovernorateModel(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
+      id: int.tryParse('${json['id'] ?? ''}') ?? 0,
+      name: '${json['name'] ?? ''}',
     );
   }
 }
@@ -40,8 +40,8 @@ class CityModel {
       );
     }
     return CityModel(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
+      id: int.tryParse('${json['id'] ?? ''}') ?? 0,
+      name: '${json['name'] ?? ''}',
       // Note: API key is spelled "governrate" (typo in backend), not "governorate".
       governorate: GovernorateModel.fromJson(json['governrate']),
     );
@@ -83,8 +83,8 @@ class DoctorModel {
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     return DoctorModel(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
+      id: int.tryParse('${json['id'] ?? ''}') ?? 0,
+      name: '${json['name'] ?? ''}',
       email: json['email'] ?? '',
       phone: json['phone'] ?? '',
       photo: json['photo'] ?? '',

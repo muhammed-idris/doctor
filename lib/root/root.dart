@@ -1,11 +1,11 @@
 import 'package:doctor/features/home/screens/home_screen.dart';
 import 'package:doctor/features/inbox/screens/inbox_screen.dart';
-import 'package:doctor/features/my%20appointment/screens/my_appointment_screen.dart';
+import '../features/my appointment/screens/my_appointment_screen.dart';
 import 'package:doctor/features/profile/screens/profile_screen.dart';
 import 'package:doctor/features/search/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/color_manger.dart';
+import '../core/constants/color_manger.dart';
 
 class Root extends StatefulWidget {
   const Root({super.key});

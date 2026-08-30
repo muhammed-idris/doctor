@@ -52,7 +52,28 @@ class _DoctorsBySpecializationScreenState
 
           if (state is SpecializationFailure) {
             return Center(
-              child: Text(state.message),
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.error_outline, size: 48),
+                    const SizedBox(height: 12),
+                    Text(state.message, textAlign: TextAlign.center),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<SpecializationBloc>().add(
+                              GetSpecializationDoctors(
+                                widget.specializationId,
+                              ),
+                            );
+                      },
+                      child: const Text('Retry'),
+                    ),
+                  ],
+                ),
+              ),
             );
           }
 

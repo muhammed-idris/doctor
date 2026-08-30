@@ -1,6 +1,6 @@
-import 'package:doctor/features/my%20appointment/widgets/cancelled_card.dart';
-import 'package:doctor/features/my%20appointment/widgets/completed_card.dart';
-import 'package:doctor/features/my%20appointment/widgets/upcoming_card.dart';
+import '../widgets/cancelled_card.dart';
+import '../widgets/completed_card.dart';
+import '../widgets/upcoming_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/app_theme_extension.dart';

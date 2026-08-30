@@ -7,10 +7,14 @@ class SpecializationModel {
     required this.name,
   });
 
-  factory SpecializationModel.fromJson(Map<String, dynamic> json) {
+  factory SpecializationModel.fromJson(Map<String, dynamic>? json) {
+    if (json == null) {
+      return SpecializationModel(id: 0, name: '');
+    }
+
     return SpecializationModel(
-      id: json['id'] ?? 0,
-      name: json['name'] ?? '',
+      id: int.tryParse('${json['id'] ?? ''}') ?? 0,
+      name: '${json['name'] ?? ''}',
     );
   }
 
