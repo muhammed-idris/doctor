@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../data/models/doctor_model/doctor_model.dart';
 
+/// Base class for all states emitted by [DoctorBloc].
 abstract class DoctorState extends Equatable {
   const DoctorState();
 

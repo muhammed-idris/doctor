@@ -1,5 +1,5 @@
 import 'package:doctor/bloc/specialization_bloc/specialization_bloc.dart';
-import 'package:doctor/features/home/screens/doctor_speciality_screen.dart';
+import 'package:doctor/features/home/screens/doctor_by_speciality_screen.dart';
 import 'package:doctor/features/home/widget/doctor_speciality_widget.dart';
 import 'package:doctor/features/home/widget/nearby_widget.dart';
 import 'package:doctor/features/doctor/screen/dr_recommendation_screen.dart';
@@ -14,7 +14,7 @@ import '../../../bloc/doctor_bloc/doctor_state.dart';
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/color_manger.dart';
 import '../../../core/constants/text_styles.dart';
-import 'doctor_by_seciality.dart';
+import 'doctor_speciality.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/image_manger.dart';
 import '../widget/doctor_speciality_widget.dart';
-import 'doctor_speciality_screen.dart';
+import 'doctor_by_speciality_screen.dart';
 
 class DoctorSpecialityScreen extends StatefulWidget {
   const DoctorSpecialityScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:doctor/data/models/auth_model/login_model.dart';
 
-import '../../../core/api/api_url.dart';
+import '../api/api_url.dart';
 
 class AuthRepository {
   final Dio dio;
@@ -38,5 +38,9 @@ class AuthRepository {
     );
 
     return AuthModel.fromJson(response.data);
+  }
+
+  Future<void> logout() async {
+    await dio.post(ApiUrl.logoutUrl);
   }
 }

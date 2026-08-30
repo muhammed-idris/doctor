@@ -1,6 +1,7 @@
 import 'package:doctor/core/api/dio_client.dart';
-import '../../../core/api/api_url.dart';
-import 'doctor_model.dart';
+import '../../data/models/doctor_model/doctor_list_model.dart';
+import '../api/api_url.dart';
+import '../../data/models/doctor_model/doctor_model.dart';
 
 class DoctorRepository {
   final DioClient dioClient;

@@ -1,4 +1,3 @@
-import 'package:doctor/features/doctor/model/doctor_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

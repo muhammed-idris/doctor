@@ -1,59 +1,109 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/auth_model/auth_repo.dart';
+import '../../core/repos/auth_repo.dart';
+
+import '../../core/storge/token_storge.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
 
-  AuthBloc(this.authRepository) : super(AuthInitial()) {
-    on<LoginRequested>(_login);
-    on<RegisterRequested>(_register);
-    on<LogoutRequested>(_logout);
+  AuthBloc({
+    required this.authRepository,
+  }) : super(AuthInitial()) {
+    on<LoginRequested>(_onLogin);
+    on<RegisterRequested>(_onRegister);
+    on<CheckAuthStatusEvent>(_onCheckAuthStatus);
+    on<LogoutRequested>(_onLogout);
   }
 
-  Future<void> _login(
+  // ================= LOGIN =================
+
+  Future<void> _onLogin(
       LoginRequested event,
       Emitter<AuthState> emit,
       ) async {
     emit(AuthLoading());
 
     try {
-      final user = await authRepository.login(
+      final authModel = await authRepository.login(
         email: event.email,
         password: event.password,
       );
 
-      emit(AuthSuccess(user));
+      // Save token received from API
+      await TokenStorage.saveToken(authModel.token);
+
+      emit(AuthSuccess(authModel));
     } catch (e) {
-      emit(AuthFailure(e.toString()));
+      emit(
+        AuthFailure(
+          e.toString().replaceFirst('Exception: ', ''),
+        ),
+      );
     }
   }
 
-  Future<void> _register(
+  // ================= REGISTER =================
+
+  Future<void> _onRegister(
       RegisterRequested event,
       Emitter<AuthState> emit,
       ) async {
     emit(AuthLoading());
 
     try {
-      final user = await authRepository.register(
+      final authModel = await authRepository.register(
         number: event.number,
         email: event.email,
         password: event.password,
       );
 
-      emit(AuthSuccess(user));
+      // Save token received from API
+      await TokenStorage.saveToken(authModel.token);
+
+      emit(AuthSuccess(authModel));
     } catch (e) {
-      emit(AuthFailure(e.toString()));
+      emit(
+        AuthFailure(
+          e.toString().replaceFirst('Exception: ', ''),
+        ),
+      );
     }
   }
 
-  void _logout(
+  // ================= CHECK AUTH =================
+
+  Future<void> _onCheckAuthStatus(
+      CheckAuthStatusEvent event,
+      Emitter<AuthState> emit,
+      ) async {
+    final hasToken = await TokenStorage.hasToken();
+
+    if (hasToken) {
+      emit(AuthTokenFound());
+    } else {
+      emit(AuthUnauthenticated());
+    }
+  }
+
+  // ================= LOGOUT =================
+
+  Future<void> _onLogout(
       LogoutRequested event,
       Emitter<AuthState> emit,
-      ) {
+      ) async {
+    emit(AuthLoading());
+
+    try {
+      await authRepository.logout();
+    } catch (_) {
+      emit(AuthFailure('Failed to logout'));
+    }
+
+    await TokenStorage.removeToken();
+
     emit(AuthLoggedOut());
   }
 }

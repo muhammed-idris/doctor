@@ -7,9 +7,13 @@ abstract class DoctorEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+// ================= GET ALL DOCTORS =================
+
 class GetDoctorsEvent extends DoctorEvent {
   const GetDoctorsEvent();
 }
+
+// ================= GET DOCTOR BY ID =================
 
 class GetDoctorByIdEvent extends DoctorEvent {
   final int doctorId;
@@ -20,6 +24,8 @@ class GetDoctorByIdEvent extends DoctorEvent {
   List<Object?> get props => [doctorId];
 }
 
+// ================= SEARCH DOCTORS =================
+
 class SearchDoctorsEvent extends DoctorEvent {
   final String name;
 
@@ -28,6 +34,8 @@ class SearchDoctorsEvent extends DoctorEvent {
   @override
   List<Object?> get props => [name];
 }
+
+// ================= FILTER BY CITY =================
 
 class GetDoctorsByCityEvent extends DoctorEvent {
   final int cityId;

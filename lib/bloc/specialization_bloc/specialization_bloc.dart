@@ -2,7 +2,7 @@ import 'package:doctor/bloc/specialization_bloc/specialization_event.dart';
 import 'package:doctor/bloc/specialization_bloc/specialization_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/specialization_model/specialization_repo.dart';
+import '../../core/repos/specialization_repo.dart';
 
 class SpecializationBloc
     extends Bloc<SpecializationEvent, SpecializationState> {

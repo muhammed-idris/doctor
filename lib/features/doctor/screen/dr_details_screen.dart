@@ -1,5 +1,4 @@
 import 'package:doctor/features/book_appointment/screens/book_appointment_screen.dart';
-import 'package:doctor/features/doctor/model/doctor_model.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

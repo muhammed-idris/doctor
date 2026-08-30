@@ -1,4 +1,4 @@
-abstract class AuthEvent {}
+class AuthEvent {}
 
 class LoginRequested extends AuthEvent {
   final String email;
@@ -21,5 +21,7 @@ class RegisterRequested extends AuthEvent {
     required this.password,
   });
 }
+
+class CheckAuthStatusEvent extends AuthEvent {}
 
 class LogoutRequested extends AuthEvent {}

@@ -166,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       Gap(height * 0.03),
                       CustomButton(
-                        text: 'Login',
+                        text: 'Sign Up',
                         onPressed: () {
                           context.read<AuthBloc>().add(
                             RegisterRequested(
