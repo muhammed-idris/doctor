@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/text_styles.dart';
-import '../model/review_model.dart';
+import '../../../data/models/doctor_model/review_model.dart';
 
 class ReviewsPage extends StatelessWidget {
   const ReviewsPage({super.key});

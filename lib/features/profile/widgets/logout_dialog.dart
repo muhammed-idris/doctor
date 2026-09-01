@@ -3,6 +3,7 @@ import 'package:doctor/shared/custom_container.dart';
 
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/text_styles.dart';
+import '../../on_boarding/screens/sign_in_screen.dart';
 
 
 class LogoutDialog extends StatelessWidget {
@@ -108,7 +109,7 @@ class LogoutDialog extends StatelessWidget {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => SignInScreen(),), (route) => false);
                         onLogout?.call();
                       },
                       child: Center(

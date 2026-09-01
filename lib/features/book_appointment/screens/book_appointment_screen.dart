@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/text_styles.dart';
+import '../../../data/models/doctor_model/dr_model.dart';
 import '../../../shared/custom_snack_bar.dart';
-import '../../doctor/model/dr_model.dart';
 import '../widgets/appointment_steps.dart';
 import '../widgets/appointment_type.dart';
 import '../widgets/payment_method.dart';
@@ -74,7 +74,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   void _confirmBooking() {
     AppSnackbar.showSuccess(context, "Appointment booked!");
 
-    Navigator.of(context).push(
+    Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (_) => BookingConfirmedScreen(
           doctor: widget.doctor,

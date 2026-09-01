@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/models/doctor_model/doctor_model.dart' as api;
+import 'doctor_model.dart' as api;
 
 
 class DoctorInfo {

@@ -3,8 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/text_styles.dart';
+import '../../../data/models/doctor_model/dr_model.dart';
 import '../../../shared/custom_container.dart';
-import '../../doctor/model/dr_model.dart';
 import '../widgets/appointment_type.dart';
 import '../widgets/payment_method.dart';
 

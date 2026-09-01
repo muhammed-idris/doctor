@@ -12,7 +12,7 @@ import '../../../shared/custom_container.dart';
 import '../dr details/about_page.dart';
 import '../dr details/doctor_tabs.dart';
 import '../dr details/review_page.dart';
-import '../model/dr_model.dart' as booking;
+import '../../../data/models/doctor_model/dr_model.dart' as booking;
 
 class DrDetailsScreen extends StatefulWidget {
   final DoctorModel doctor;
@@ -297,7 +297,7 @@ class _DrDetailsScreenState extends State<DrDetailsScreen> {
 
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BookAppointmentScreen(
