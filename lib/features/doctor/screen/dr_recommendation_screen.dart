@@ -14,15 +14,39 @@ class DrRecommendationScreen extends StatefulWidget {
   const DrRecommendationScreen({super.key});
 
   @override
-  State<DrRecommendationScreen> createState() => _DrRecommendationScreenState();
+  State<DrRecommendationScreen> createState() =>
+      _DrRecommendationScreenState();
 }
 
 class _DrRecommendationScreenState extends State<DrRecommendationScreen> {
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
 
+    // Load all doctors when screen opens
     context.read<DoctorBloc>().add(const GetDoctorsEvent());
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _searchDoctors(String value) {
+    final query = value.trim();
+
+    if (query.isEmpty) {
+      // If search is empty, show all doctors again
+      context.read<DoctorBloc>().add(const GetDoctorsEvent());
+    } else {
+      // Search doctors by name
+      context.read<DoctorBloc>().add(
+        SearchDoctorsEvent(name: query),
+      );
+    }
   }
 
   @override
@@ -30,11 +54,11 @@ class _DrRecommendationScreenState extends State<DrRecommendationScreen> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    final glass = Theme.of(context).extension<GlassTheme>() ?? GlassTheme.light;
+    final glass =
+        Theme.of(context).extension<GlassTheme>() ?? GlassTheme.light;
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-
       child: Scaffold(
         appBar: BackAppBar(
           appBarTitle: "Recommendation Doctor",
@@ -44,20 +68,20 @@ class _DrRecommendationScreenState extends State<DrRecommendationScreen> {
             size: 24,
           ),
         ),
-
         body: Padding(
           padding: EdgeInsets.only(
             top: height * 0.03,
             left: width * 0.04,
             right: width * 0.04,
           ),
-
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-
             child: Column(
               children: [
-                const CustomSearchBar(),
+                CustomSearchBar(
+                  controller: _searchController,
+                  onChanged: _searchDoctors,
+                ),
 
                 Gap(height * 0.015),
 
@@ -65,33 +89,29 @@ class _DrRecommendationScreenState extends State<DrRecommendationScreen> {
                   builder: (context, state) {
                     // Loading
                     if (state is DoctorLoading) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-
-                    // Success
-                    if (state is DoctorLoaded) {
-                      if (state.doctors.isEmpty) {
-                        return const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(30),
-                            child: Text("No doctors found"),
-                          ),
-                        );
-                      }
-
-                      return DrRecommendationWidget(doctors: state.doctors);
+                      return const Padding(
+                        padding: EdgeInsets.all(32),
+                        child: CircularProgressIndicator(),
+                      );
                     }
 
                     // Error
                     if (state is DoctorError) {
-                      return Center(
+                      return Padding(
+                        padding: const EdgeInsets.all(24),
                         child: Column(
                           children: [
-                            const Text("Something went wrong"),
+                            const Text(
+                              "Something went wrong",
+                              textAlign: TextAlign.center,
+                            ),
 
                             const Gap(10),
 
-                            Text(state.message, textAlign: TextAlign.center),
+                            Text(
+                              state.message,
+                              textAlign: TextAlign.center,
+                            ),
 
                             const Gap(15),
 
@@ -108,7 +128,24 @@ class _DrRecommendationScreenState extends State<DrRecommendationScreen> {
                       );
                     }
 
-                    return const SizedBox();
+                    // Success
+                    if (state is DoctorLoaded) {
+                      if (state.doctors.isEmpty) {
+                        return const Padding(
+                          padding: EdgeInsets.all(30),
+                          child: Text(
+                            "No doctors found",
+                            textAlign: TextAlign.center,
+                          ),
+                        );
+                      }
+
+                      return DrRecommendationWidget(
+                        doctors: state.doctors,
+                      );
+                    }
+
+                    return const SizedBox.shrink();
                   },
                 ),
               ],

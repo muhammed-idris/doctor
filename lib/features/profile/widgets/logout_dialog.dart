@@ -5,31 +5,23 @@ import '../../../core/constants/app_theme_extension.dart';
 import '../../../core/constants/text_styles.dart';
 import '../../on_boarding/screens/sign_in_screen.dart';
 
-
 class LogoutDialog extends StatelessWidget {
   final VoidCallback? onCancel;
   final VoidCallback? onLogout;
 
-  const LogoutDialog({
-    super.key,
-    this.onCancel,
-    this.onLogout,
-  });
+  const LogoutDialog({super.key, this.onCancel, this.onLogout});
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
-    final glass =
-        Theme.of(context).extension<GlassTheme>() ?? GlassTheme.light;
+    final glass = Theme.of(context).extension<GlassTheme>() ?? GlassTheme.light;
 
     return Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      insetPadding: EdgeInsets.symmetric(
-        horizontal: width * 0.055,
-      ),
+      insetPadding: EdgeInsets.symmetric(horizontal: width * 0.055),
       child: CustomGlassCard(
         width: width,
         padding: EdgeInsets.zero,
@@ -60,12 +52,10 @@ class LogoutDialog extends StatelessWidget {
 
                   Text(
                     "You'll need to enter your username\n"
-                        "and password next time\n"
-                        "you want to login",
+                    "and password next time\n"
+                    "you want to login",
                     textAlign: TextAlign.center,
-                    style: TextStyles.body.copyWith(
-                      color: glass.hintText,
-                    ),
+                    style: TextStyles.body.copyWith(color: glass.hintText),
                   ),
                 ],
               ),
@@ -109,15 +99,18 @@ class LogoutDialog extends StatelessWidget {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => SignInScreen(),), (route) => false);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignInScreen(),
+                          ),
+                        );
                         onLogout?.call();
                       },
                       child: Center(
                         child: Text(
                           "Logout",
-                          style: TextStyles.body.copyWith(
-                            color: Colors.red,
-                          ),
+                          style: TextStyles.body.copyWith(color: Colors.red),
                         ),
                       ),
                     ),
