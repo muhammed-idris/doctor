@@ -98,211 +98,214 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 right: width * 0.06,
                 bottom: height * 0.01,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Create Account",
-                    style: TextStyles.display.copyWith(
-                      color: glass.primaryBlue,
-                    ),
-                  ),
-                  Gap(height * 0.01),
-                  Text(
-                    "Sign up now and start exploring all that our app has to offer. We're excited to welcome you to our community!",
-                    style: TextStyles.headline1.copyWith(
-                      color: glass.hintText,
-                    ),
-                  ),
-                  Gap(height * 0.04),
-                  Column(
-                    children: [
-                      CustomTextField(
-                        hintText: 'Number',
-                        controller: numberController,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Create Account",
+                      style: TextStyles.display.copyWith(
+                        color: glass.primaryBlue,
                       ),
-                      SizedBox(height: height * 0.02),
-                      CustomTextField(
-                        hintText: 'Email',
-                        controller: emailController,
+                    ),
+                    Gap(height * 0.01),
+                    Text(
+                      "Sign up now and start exploring all that our app has to offer. We're excited to welcome you to our community!",
+                      style: TextStyles.headline1.copyWith(
+                        color: glass.hintText,
                       ),
-                      SizedBox(height: height * 0.02),
-                      CustomTextField(
-                        hintText: 'Password',
-                        controller: passwordController,
-                        obscureText: _obscurePassword,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscurePassword
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
-                            color: glass.hintText,
-                            size: width * 0.05,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _obscurePassword = !_obscurePassword;
-                            });
-                          },
+                    ),
+                    Gap(height * 0.04),
+                    Column(
+                      children: [
+                        CustomTextField(
+                          hintText: 'Number',
+                          controller: numberController,
                         ),
-                      ),
-                      Gap(height * 0.015),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: width * 0.06,
-                                height: height * 0.035,
-                                child: Checkbox(
-                                  value: rememberMe,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      rememberMe = value ?? false;
-                                    });
-                                  },
-                                  activeColor: glass.primaryBlue,
-                                  side: BorderSide(
-                                    color: glass.borderFieldColor,
-                                    width: width * 0.005,
+                        SizedBox(height: height * 0.02),
+                        CustomTextField(
+                          hintText: 'Email',
+                          controller: emailController,
+                        ),
+                        SizedBox(height: height * 0.02),
+                        CustomTextField(
+                          hintText: 'Password',
+                          controller: passwordController,
+                          obscureText: _obscurePassword,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: glass.hintText,
+                              size: width * 0.05,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
+                          ),
+                        ),
+                        Gap(height * 0.015),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: width * 0.06,
+                                  height: height * 0.035,
+                                  child: Checkbox(
+                                    value: rememberMe,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        rememberMe = value ?? false;
+                                      });
+                                    },
+                                    activeColor: glass.primaryBlue,
+                                    side: BorderSide(
+                                      color: glass.borderFieldColor,
+                                      width: width * 0.005,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(width * 0.01),
+                                    ),
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(width * 0.01),
-                                  ),
-                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                 ),
+                                SizedBox(width: width * 0.02),
+                                Text(
+                                  'Remember me',
+                                  style: TextStyle(
+                                    fontSize: width * 0.032,
+                                    color: glass.hintText,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const ForgetPasswordScreen(),
+                                  ),
+                                );
+                              },
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               ),
-                              SizedBox(width: width * 0.02),
-                              Text(
-                                'Remember me',
+                              child: Text(
+                                'Forgot Password?',
                                 style: TextStyle(
                                   fontSize: width * 0.032,
-                                  color: glass.hintText,
+                                  color: glass.primaryBlue,
                                 ),
                               ),
-                            ],
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const ForgetPasswordScreen(),
-                                ),
-                              );
-                            },
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              minimumSize: Size.zero,
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
-                            child: Text(
-                              'Forgot Password?',
-                              style: TextStyle(
-                                fontSize: width * 0.032,
-                                color: glass.primaryBlue,
+                          ],
+                        ),
+                        Gap(height * 0.03),
+                        CustomButton(
+                          text: state is AuthLoading ? 'Creating account...' : 'Sign Up',
+                          onPressed: state is AuthLoading ? null : _submit,
+                        ),
+                        Gap(height * 0.04),
+                        const OrDivider(),
+                        Gap(height * 0.04),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SocialLoginButton(
+                              onTap: () {},
+                              child: Image.asset(
+                                'assets/icons/Group 427323113.png',
+                                width: width * 0.07,
+                                height: height * 0.07,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Gap(height * 0.03),
-                      CustomButton(
-                        text: state is AuthLoading ? 'Creating account...' : 'Sign Up',
-                        onPressed: state is AuthLoading ? null : _submit,
-                      ),
-                      Gap(height * 0.04),
-                      const OrDivider(),
-                      Gap(height * 0.04),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          SocialLoginButton(
-                            onTap: () {},
-                            child: Image.asset(
-                              'assets/icons/Group 427323113.png',
-                              width: width * 0.07,
-                              height: height * 0.07,
+                            SocialLoginButton(
+                              onTap: () {},
+                              child: Image.asset(
+                                'assets/icons/XMLID_22_.png',
+                                width: width * 0.06,
+                              ),
                             ),
-                          ),
-                          SocialLoginButton(
-                            onTap: () {},
-                            child: Image.asset(
-                              'assets/icons/XMLID_22_.png',
-                              width: width * 0.06,
+                            SocialLoginButton(
+                              onTap: () {},
+                              child: Image.asset(
+                                'assets/icons/Logo.png',
+                                width: width * 0.06,
+                              ),
                             ),
-                          ),
-                          SocialLoginButton(
-                            onTap: () {},
-                            child: Image.asset(
-                              'assets/icons/Logo.png',
-                              width: width * 0.06,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Gap(height * 0.04),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'By continuing, you agree to our ',
-                            style: TextStyle(
-                              fontSize: width * 0.03,
-                              color: glass.hintText,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              // Terms & Conditions
-                            },
-                            child: Text(
-                              'Terms & Conditions',
+                          ],
+                        ),
+                        Gap(height * 0.04),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'By continuing, you agree to our ',
                               style: TextStyle(
                                 fontSize: width * 0.03,
-                                fontWeight: FontWeight.w600,
-                                color: glass.textPrimary,
+                                color: glass.hintText,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Gap(height * 0.03),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Already have an account?",
-                            style: TextStyle(
-                              fontSize: width * 0.035,
-                              color: glass.hintText,
-                            ),
-                          ),
-                          SizedBox(width: width * 0.015),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignInScreen(),
+                            GestureDetector(
+                              onTap: () {
+                                // Terms & Conditions
+                              },
+                              child: Text(
+                                'Terms & Conditions',
+                                style: TextStyle(
+                                  fontSize: width * 0.03,
+                                  fontWeight: FontWeight.w600,
+                                  color: glass.textPrimary,
                                 ),
-                              );
-                            },
-                            child: Text(
-                              'Sign In',
+                              ),
+                            ),
+                          ],
+                        ),
+                        Gap(height * 0.03),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Already have an account?",
                               style: TextStyle(
                                 fontSize: width * 0.035,
-                                fontWeight: FontWeight.w600,
-                                color: glass.primaryBlue,
+                                color: glass.hintText,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                            SizedBox(width: width * 0.015),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SignInScreen(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Sign In',
+                                style: TextStyle(
+                                  fontSize: width * 0.035,
+                                  fontWeight: FontWeight.w600,
+                                  color: glass.primaryBlue,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
